@@ -7,8 +7,7 @@
 </head>
 <body>
     <?php
-        echo "<h1 style='text-align: center; color: green;'>Hello world..!!</h1>";
-        echo "<h1 style='text-align: center; color: red;'>Hello world..!!</h1>";
+        echo "<h1 style='text-align: center; color: green; margin: 30px auto'>Hello world..!!</h1>";
     ?>
 </body>
 </html>
