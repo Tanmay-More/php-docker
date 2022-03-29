@@ -1,0 +1,38 @@
+-
+ name: 'execute docker container'
+ hosts: localhost
+ become: yes
+ tasks:
+  -
+   name: install docker python module
+   pip:
+    name: docker
+  -
+   name: 'build docker image'
+   docker_image:
+    build:
+     path: ./
+    name: my-php-page
+    tag: latest
+    source: build
+    force_source: yes
+  -
+   name: 'stop previous container'
+   docker_container:
+    name: php-1
+    state: stopped
+   ignore_errors: yes
+  -
+   name: 'remove previous container'
+   docker_container:
+    name: php-1
+    state: absent
+   ignore_errors: yes
+  -
+   name: 'run new container'
+   docker_container:
+    name: php-1
+    image: my-php-page
+    state: started
+    ports:
+     - "80:80"
